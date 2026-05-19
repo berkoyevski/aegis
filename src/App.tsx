@@ -8,7 +8,7 @@ function App() {
   const selected = selectedRegionId ? regions[selectedRegionId] : null
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="h-screen flex flex-col">
       <header className="px-6 py-3 border-b border-[var(--color-border)] flex items-center justify-between">
         <div className="flex items-baseline gap-4">
           <div className="text-xl tracking-tight">AEGIS</div>
@@ -22,7 +22,7 @@ function App() {
         </div>
       </header>
 
-      <main className="flex-1 grid grid-cols-[1fr_420px] min-h-0">
+      <main className="flex-1 grid grid-cols-[1fr_420px] min-h-0 overflow-hidden">
         <section className="flex items-center justify-center p-10">
           <div className="text-center max-w-md">
             <div className="text-xs uppercase tracking-[0.3em] text-[var(--color-text-muted)] mb-3">
