@@ -1,0 +1,83 @@
+{
+  "id": "insurgency-karastan",
+  "name": "Karastan'da Stabilizasyon",
+  "description": "Yıllar süren iç savaşın ardından Karastan'a vali olarak atandın. Hükümet ve askerin desteğini koruyarak isyancı hücreleri temizlemen ve tüm bölgeleri stabilize etmen gerekiyor.",
+  "playerCountryId": "karastan",
+  "playerRole": "governor",
+  "enabledFeatures": {
+    "diplomacy": false,
+    "hiddenThreats": true,
+    "interstateWar": false
+  },
+  "victoryCondition": { "type": "stabilize_all", "minStability": 70 },
+  "defeatConditions": [
+    { "type": "reputation_zero", "reputationId": "government" },
+    { "type": "reputation_zero", "reputationId": "military" }
+  ],
+  "initialState": {
+    "treasury": 5000,
+    "reputations": [
+      { "id": "government", "label": "Hükümet", "value": 70 },
+      { "id": "military", "label": "Asker", "value": 60 }
+    ],
+    "regionOverrides": {
+      "kr-caval": {
+        "stability": 75,
+        "hiddenThreat": 5,
+        "intel": 80,
+        "happiness": 65,
+        "control": { "ownerId": "karastan", "level": 90 }
+      },
+      "kr-vesh": {
+        "stability": 50,
+        "hiddenThreat": 20,
+        "intel": 50,
+        "happiness": 50,
+        "control": { "ownerId": "karastan", "level": 60 }
+      },
+      "kr-norem": {
+        "stability": 40,
+        "hiddenThreat": 30,
+        "intel": 35,
+        "happiness": 45,
+        "control": { "ownerId": "karastan", "level": 50 }
+      },
+      "kr-talia": {
+        "stability": 15,
+        "hiddenThreat": 70,
+        "intel": 15,
+        "happiness": 30,
+        "control": { "ownerId": "insurgent", "level": 65 }
+      },
+      "kr-selir": {
+        "stability": 35,
+        "hiddenThreat": 45,
+        "intel": 30,
+        "happiness": 40,
+        "control": { "ownerId": "karastan", "level": 40 }
+      },
+      "kr-ayven": {
+        "stability": 55,
+        "hiddenThreat": 25,
+        "intel": 60,
+        "happiness": 55,
+        "control": { "ownerId": "karastan", "level": 70 }
+      },
+      "kr-karth": {
+        "stability": 30,
+        "hiddenThreat": 55,
+        "intel": 25,
+        "happiness": 40,
+        "control": { "ownerId": "karastan", "level": 35 }
+      },
+      "kr-doras": {
+        "stability": 45,
+        "hiddenThreat": 35,
+        "intel": 40,
+        "happiness": 50,
+        "control": { "ownerId": "karastan", "level": 55 }
+      }
+    }
+  },
+  "rngSeed": 42
+}
