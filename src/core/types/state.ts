@@ -1,4 +1,5 @@
 import type { Country, Region } from './entities'
+import type { GameEvent } from './events'
 import type { CountryId, RegionId, ScenarioId } from './ids'
 
 export type GameStatus = 'playing' | 'victory' | 'defeat'
@@ -22,4 +23,6 @@ export type GameState = {
   status: GameStatus
 
   selectedRegionId: RegionId | null
+
+  activeEvent: GameEvent | null
 }

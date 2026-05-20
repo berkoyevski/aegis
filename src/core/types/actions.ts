@@ -10,4 +10,5 @@ export type Action =
   | { type: 'ACTIVATE_INITIATIVE'; regionId: RegionId; initiativeId: InitiativeId }
   | { type: 'DEACTIVATE_INITIATIVE'; regionId: RegionId; initiativeId: InitiativeId }
   | { type: 'EXECUTE_OPERATION'; operationId: OperationId; targetRegionId?: RegionId }
+  | { type: 'RESOLVE_EVENT'; choiceIndex: number }
   | { type: 'RESET'; scenarioId: ScenarioId }

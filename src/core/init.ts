@@ -75,5 +75,6 @@ export function buildInitialState(
     playerCountryId: country.id,
     status: 'playing',
     selectedRegionId: null,
+    activeEvent: null,
   }
 }

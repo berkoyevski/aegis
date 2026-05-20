@@ -1,6 +1,7 @@
 import { useGameStore } from './store/gameStore'
 import { useGameLoop } from './ui/hooks/useGameLoop'
 import { MapView } from './ui/map/MapView'
+import { EventModal } from './ui/modals/EventModal'
 import { DebugPanel } from './ui/panels/DebugPanel'
 import { InitiativePanel } from './ui/panels/InitiativePanel'
 import { TopBar } from './ui/panels/TopBar'
@@ -31,6 +32,8 @@ function App() {
         </div>
         <DebugPanel />
       </main>
+
+      <EventModal />
     </div>
   )
 }

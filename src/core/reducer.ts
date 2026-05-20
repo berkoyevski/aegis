@@ -1,4 +1,5 @@
 import { getInitiative } from './initiatives'
+import { applyEventEffect } from './systems/events'
 import { tickState } from './systems/tick'
 import type { Action, GameState } from './types'
 
@@ -69,6 +70,14 @@ export function reduce(state: GameState, action: Action): GameState {
           },
         },
       }
+    }
+
+    case 'RESOLVE_EVENT': {
+      if (!state.activeEvent) return state
+      const choice = state.activeEvent.choices[action.choiceIndex]
+      if (!choice) return state
+      const applied = applyEventEffect(state, choice.effect)
+      return { ...applied, activeEvent: null }
     }
 
     case 'EXECUTE_OPERATION':

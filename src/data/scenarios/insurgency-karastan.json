@@ -44,7 +44,7 @@
       },
       "kr-talia": {
         "stability": 15,
-        "hiddenThreat": 70,
+        "hiddenThreat": 76,
         "intel": 15,
         "happiness": 30,
         "control": { "ownerId": "insurgent", "level": 65 }
