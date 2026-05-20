@@ -3,6 +3,7 @@ import type { CountryId, Region } from '../../core/types'
 
 export type RegionColors = {
   fill: string
+  fillDark: string
   stroke: string
   text: string
 }
@@ -19,20 +20,21 @@ export function regionColor(
 
   if (isInsurgent) {
     hue = 358
-    baseLightness = 32
+    baseLightness = 30
   } else if (isPlayer) {
     hue = 40 + (region.stability / 100) * 130
-    baseLightness = 26 + (region.stability / 100) * 10
+    baseLightness = 24 + (region.stability / 100) * 12
   } else {
     hue = 220
     baseLightness = 22
   }
 
-  const saturation = 28 + (region.control.level / 100) * 28
+  const saturation = 30 + (region.control.level / 100) * 28
 
   return {
-    fill: `hsl(${hue}, ${saturation}%, ${baseLightness}%)`,
-    stroke: `hsl(${hue}, ${saturation + 12}%, ${baseLightness + 18}%)`,
-    text: baseLightness < 35 ? 'rgba(245,245,250,0.95)' : 'rgba(20,20,28,0.9)',
+    fill: `hsl(${hue}, ${saturation}%, ${baseLightness + 7}%)`,
+    fillDark: `hsl(${hue}, ${saturation + 6}%, ${Math.max(8, baseLightness - 10)}%)`,
+    stroke: `hsl(${hue}, ${saturation + 14}%, ${baseLightness + 22}%)`,
+    text: baseLightness < 34 ? 'rgba(246,247,252,0.96)' : 'rgba(18,20,26,0.92)',
   }
 }
