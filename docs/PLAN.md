@@ -2,8 +2,8 @@
 
 > Rebel Inc. çekirdeği üzerine kurulmuş, çok-senaryolu, çok-ülkeli bir grand strategy sandbox. Web tabanlı, tek/çok oyunculu büyüme potansiyelli.
 
-**Doküman versiyonu:** 0.4 — 2026-05-19
-**Durum:** Sprint 0-4 tamamlandı. Çalışan: SVG harita, veri modeli + state, zaman + bütçe döngüsü, girişim sistemi (9 girişim, requires zinciri, tick'te pasif etki). Sıradaki: Sprint 5 (isyan + krizler).
+**Doküman versiyonu:** 0.5 — 2026-05-19
+**Durum:** Sprint 0-5 tamamlandı. Çalışan: SVG harita, state, zaman+bütçe, girişim sistemi, tehdit dinamiği + kriz event sistemi (modal, karar). Operasyonlar (Sprint 5 ikinci yarısı) henüz yapılmadı. Sıradaki: Sprint 6 (reputation + kazanma/kaybetme) ve operasyonlar.
 
 ---
 
