@@ -4,29 +4,14 @@ import { useGameStore } from '../../store/gameStore'
 import { CapitalMarker, CityMarker, ThreatMarker } from './MapMarkers'
 import { regionColor } from './regionColor'
 
-type Props = {
-  region: Region
-}
-
-export function RegionPolygon({ region }: Props) {
+export function RegionShape({ region }: { region: Region }) {
   const selectedRegionId = useGameStore((s) => s.selectedRegionId)
   const dispatch = useGameStore((s) => s.dispatch)
   const playerCountryId = useGameStore((s) => s.playerCountryId)
-  const capitalRegionId = useGameStore(
-    (s) => s.countries[s.playerCountryId].capitalRegionId
-  )
 
   const isSelected = region.id === selectedRegionId
-  const isCapital = region.id === capitalRegionId
-  const isInsurgent = region.control.ownerId === INSURGENT_FACTION
-  const showThreat = isInsurgent || region.hiddenThreat >= 55
-
-  const { fill, fillDark, stroke, text } = regionColor(region, playerCountryId)
+  const { fill, fillDark, stroke } = regionColor(region, playerCountryId)
   const gradId = `grad-${region.id}`
-
-  const pathD = region.path
-  const cx = region.labelX
-  const cy = region.labelY
 
   return (
     <g
@@ -45,9 +30,8 @@ export function RegionPolygon({ region }: Props) {
           <stop offset="100%" stopColor={fillDark} />
         </radialGradient>
       </defs>
-
       <path
-        d={pathD}
+        d={region.path}
         fill={`url(#${gradId})`}
         stroke={isSelected ? 'var(--color-accent)' : stroke}
         strokeWidth={isSelected ? 3 : 1.2}
@@ -56,7 +40,25 @@ export function RegionPolygon({ region }: Props) {
         className="transition-[stroke,stroke-width,opacity] duration-150 group-hover:opacity-95 group-hover:[stroke:var(--color-text)]"
         vectorEffect="non-scaling-stroke"
       />
+    </g>
+  )
+}
 
+export function RegionMarker({ region }: { region: Region }) {
+  const playerCountryId = useGameStore((s) => s.playerCountryId)
+  const capitalRegionId = useGameStore(
+    (s) => s.countries[s.playerCountryId].capitalRegionId
+  )
+
+  const isCapital = region.id === capitalRegionId
+  const isInsurgent = region.control.ownerId === INSURGENT_FACTION
+  const showThreat = isInsurgent || region.hiddenThreat >= 55
+  const { text } = regionColor(region, playerCountryId)
+  const cx = region.labelX
+  const cy = region.labelY
+
+  return (
+    <g className="pointer-events-none select-none">
       {isCapital ? (
         <CapitalMarker x={cx} y={cy - 26} color={text} />
       ) : (
@@ -73,8 +75,7 @@ export function RegionPolygon({ region }: Props) {
         fill={text}
         fontSize="15"
         fontWeight={600}
-        className="pointer-events-none select-none"
-        style={{ paintOrder: 'stroke', stroke: 'rgba(0,0,0,0.25)', strokeWidth: 3 }}
+        style={{ paintOrder: 'stroke', stroke: 'rgba(0,0,0,0.35)', strokeWidth: 3.5 }}
       >
         {region.name}
       </text>
@@ -85,8 +86,9 @@ export function RegionPolygon({ region }: Props) {
         dominantBaseline="central"
         fill={text}
         fontSize="9"
-        opacity={0.75}
-        className="pointer-events-none select-none uppercase tracking-wider"
+        opacity={0.8}
+        className="uppercase tracking-wider"
+        style={{ paintOrder: 'stroke', stroke: 'rgba(0,0,0,0.3)', strokeWidth: 3 }}
       >
         {isInsurgent
           ? 'isyancı'

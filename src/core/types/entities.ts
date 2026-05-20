@@ -24,6 +24,8 @@ export type Region = {
   path: string
   labelX: number
   labelY: number
+  terrain?: string
+  decorations?: { x: number; y: number; kind: string }[]
 
   population: Population
   stability: number

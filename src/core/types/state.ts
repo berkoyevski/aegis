@@ -34,4 +34,6 @@ export type GameState = {
   operationCooldowns: Record<OperationId, number>
 
   mapViewBox: string
+  mapLakes: { name: string; path: string }[]
+  mapRivers: { name: string; path: string }[]
 }

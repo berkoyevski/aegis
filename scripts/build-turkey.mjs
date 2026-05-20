@@ -127,10 +127,78 @@ function ringToPath(ring) {
   )
 }
 
+// gerçek lat/lon → SVG (project [lon,lat] bekliyor)
+function lineToPath(latlons) {
+  return latlons
+    .map(([lat, lon], i) => {
+      const [x, y] = project([lon, lat])
+      return `${i ? 'L' : 'M'} ${x.toFixed(1)} ${y.toFixed(1)}`
+    })
+    .join(' ')
+}
+function lakeToPath(latlons) {
+  return lineToPath(latlons) + ' Z'
+}
+
+// büyük göller (yaklaşık gerçek konum, oval)
+const LAKES = [
+  { name: 'Van Gölü', ring: [[38.95, 42.4], [38.8, 43.25], [38.45, 43.6], [38.3, 43.1], [38.35, 42.4], [38.65, 42.15]] },
+  { name: 'Tuz Gölü', ring: [[39.05, 33.2], [38.95, 33.65], [38.5, 33.7], [38.4, 33.25], [38.75, 32.95]] },
+  { name: 'Beyşehir', ring: [[37.95, 31.4], [37.85, 31.72], [37.55, 31.62], [37.62, 31.32]] },
+]
+
+// ana nehirler (kaynak→ağız, yaklaşık gerçek güzergah)
+const RIVERS = [
+  { name: 'Kızılırmak', pts: [[39.8, 38.3], [39.5, 37.0], [39.0, 35.8], [38.8, 34.5], [39.5, 33.8], [40.3, 34.2], [41.0, 35.2], [41.7, 35.95]] },
+  { name: 'Fırat', pts: [[39.7, 40.5], [39.2, 39.5], [38.7, 39.0], [38.2, 38.6], [37.6, 38.2], [37.0, 38.0]] },
+  { name: 'Dicle', pts: [[38.4, 39.9], [37.9, 40.3], [37.6, 41.2], [37.3, 42.0]] },
+  { name: 'Sakarya', pts: [[39.4, 31.5], [40.0, 31.0], [40.7, 30.6], [41.1, 30.7]] },
+  { name: 'Yeşilırmak', pts: [[39.9, 36.2], [40.3, 36.5], [40.8, 36.6], [41.3, 36.65]] },
+]
+
+// deterministik random (LCG)
+function makeRng(seed) {
+  let s = seed
+  return () => {
+    s = (s * 1664525 + 1013904223) % 4294967296
+    return s / 4294967296
+  }
+}
+
+const DECOR_BY_TERRAIN = {
+  mountain: { kind: 'mountain', count: 6 },
+  forest: { kind: 'tree', count: 8 },
+  plain: { kind: 'wheat', count: 4 },
+  coast: { kind: 'wave', count: 3 },
+  city: { kind: 'building', count: 3 },
+  lake: { kind: 'mountain', count: 4 },
+}
+
+function buildDecorations(merged, terrain, labelXY, seedBase) {
+  const cfg = DECOR_BY_TERRAIN[terrain] ?? DECOR_BY_TERRAIN.plain
+  const bb = turf.bbox(merged)
+  const rng = makeRng(seedBase)
+  const out = []
+  let tries = 0
+  while (out.length < cfg.count && tries < 400) {
+    tries++
+    const lon = bb[0] + rng() * (bb[2] - bb[0])
+    const lat = bb[1] + rng() * (bb[3] - bb[1])
+    if (!turf.booleanPointInPolygon(turf.point([lon, lat]), merged)) continue
+    const [x, y] = project([lon, lat])
+    // etiket/şehir ikonu çevresinden kaçın
+    if (Math.abs(x - labelXY[0]) < 46 && Math.abs(y - labelXY[1]) < 40) continue
+    out.push({ x: Math.round(x), y: Math.round(y), kind: cfg.kind })
+  }
+  return out
+}
+
 const out = {
   id: 'turkiye', name: 'Türkiye', capitalRegionId: 'tr-ankara',
   viewBox: `0 0 ${W} ${H}`,
   traits: ['large', 'diverse-population', 'regional-disparity'],
+  lakes: LAKES.map((l) => ({ name: l.name, path: lakeToPath(l.ring) })),
+  rivers: RIVERS.map((r) => ({ name: r.name, path: lineToPath(r.pts) })),
   regions: [],
 }
 
@@ -152,11 +220,14 @@ for (const [id, r] of Object.entries(REGIONS)) {
   const d = keep.map((p) => ringToPath(p[0])).join(' ')
   const c = turf.centroid(merged)
   const [lx, ly] = project(c.geometry.coordinates)
-  const labelNudge = { 'tr-cukurova': 12, 'tr-konya': 8 }
+  const labelNudge = { 'tr-cukurova': 12, 'tr-konya': 8, 'tr-van': -18 }
+  const finalLabel = [Math.round(lx), Math.round(ly + (labelNudge[id] ?? 0))]
+  const decorations = buildDecorations(merged, r.terrain, finalLabel, 1000 + out.regions.length * 97)
   out.regions.push({
     id, name: r.name, path: d,
-    labelX: Math.round(lx), labelY: Math.round(ly + (labelNudge[id] ?? 0)),
-    population: r.pop, happiness: r.happiness, terrain: r.terrain, description: r.desc,
+    labelX: finalLabel[0], labelY: finalLabel[1],
+    population: r.pop, happiness: r.happiness, terrain: r.terrain,
+    decorations, description: r.desc,
   })
   console.log(`${r.name}: ${used.length} il, path ${d.length} char`)
 }

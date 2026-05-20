@@ -17,6 +17,8 @@ type RawRegion = {
   path?: string
   labelX?: number
   labelY?: number
+  terrain?: string
+  decorations?: { x: number; y: number; kind: string }[]
   population: number | { total: number; happiness: number }
   happiness?: number
   description?: string
@@ -28,6 +30,8 @@ type RawCountry = {
   capitalRegionId: string
   traits: string[]
   viewBox?: string
+  lakes?: { name: string; path: string }[]
+  rivers?: { name: string; path: string }[]
   regions: RawRegion[]
 }
 
@@ -82,6 +86,8 @@ export function buildInitialState(
       path: shape.path,
       labelX: shape.labelX,
       labelY: shape.labelY,
+      terrain: raw.terrain,
+      decorations: raw.decorations,
       population: {
         total: pop.total,
         happiness: ov.happiness ?? pop.baseHappiness,
@@ -121,5 +127,7 @@ export function buildInitialState(
     defeatConditions: scenario.defeatConditions,
     operationCooldowns: {},
     mapViewBox: countryData.viewBox ?? DEFAULT_VIEWBOX,
+    mapLakes: countryData.lakes ?? [],
+    mapRivers: countryData.rivers ?? [],
   }
 }
