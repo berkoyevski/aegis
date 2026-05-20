@@ -168,11 +168,39 @@ export function InitiativePanel() {
 
   return (
     <div className="border-t border-[var(--color-border)] bg-[var(--color-surface)] overflow-y-auto max-h-[40vh]">
-      <div className="px-5 py-3 border-b border-[var(--color-border)] sticky top-0 bg-[var(--color-surface)]">
-        <span className="text-xs uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
-          Girişimler
-        </span>
-        <span className="ml-2 text-sm text-[var(--color-text)]">{region.name}</span>
+      <div className="px-5 py-3 border-b border-[var(--color-border)] sticky top-0 bg-[var(--color-surface)] z-10">
+        <div className="flex items-center justify-between">
+          <div className="flex items-baseline gap-2">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+              Bölge
+            </span>
+            <span className="text-base text-[var(--color-text)]">{region.name}</span>
+          </div>
+          <div className="text-xs text-[var(--color-text-muted)]">
+            Nüfus {(region.population.total / 1000).toFixed(0)}k &middot; Mutluluk{' '}
+            {Math.round(region.population.happiness)}
+          </div>
+        </div>
+        <div className="mt-2 flex gap-5 text-xs">
+          <span className="text-[var(--color-text-muted)]">
+            Stabilite{' '}
+            <b className="text-[var(--color-text)] font-mono">
+              {Math.round(region.stability)}
+            </b>
+          </span>
+          <span className="text-[var(--color-text-muted)]">
+            Tehdit{' '}
+            <b className="text-[var(--color-text)] font-mono">
+              {Math.round(region.hiddenThreat)}
+            </b>
+          </span>
+          <span className="text-[var(--color-text-muted)]">
+            İstihbarat{' '}
+            <b className="text-[var(--color-text)] font-mono">
+              {Math.round(region.intel)}
+            </b>
+          </span>
+        </div>
       </div>
 
       <OperationsRow region={region} />

@@ -3,8 +3,8 @@ import { useGameLoop } from './ui/hooks/useGameLoop'
 import { MapView } from './ui/map/MapView'
 import { EventModal } from './ui/modals/EventModal'
 import { GameOverModal } from './ui/modals/GameOverModal'
-import { DebugPanel } from './ui/panels/DebugPanel'
 import { InitiativePanel } from './ui/panels/InitiativePanel'
+import { OverviewPanel } from './ui/panels/OverviewPanel'
 import { TopBar } from './ui/panels/TopBar'
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
           </div>
           <InitiativePanel />
         </div>
-        <DebugPanel />
+        <OverviewPanel />
       </main>
 
       <EventModal />

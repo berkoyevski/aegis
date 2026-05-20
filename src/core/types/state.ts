@@ -15,6 +15,7 @@ export type GameState = {
   rngSeed: number
 
   scenarioId: ScenarioId
+  scenarioName: string
 
   countries: Record<CountryId, Country>
   regions: Record<RegionId, Region>

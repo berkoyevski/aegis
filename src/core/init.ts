@@ -70,6 +70,7 @@ export function buildInitialState(
     speed: 1,
     rngSeed: scenario.rngSeed ?? Math.floor(Math.random() * 1_000_000),
     scenarioId: scenario.id,
+    scenarioName: scenario.name,
     countries: { [country.id]: country },
     regions,
     playerCountryId: country.id,
