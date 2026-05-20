@@ -8,28 +8,30 @@ export function MapView() {
   return (
     <div className="relative w-full h-full flex items-center justify-center p-6 overflow-hidden">
       <svg
-        viewBox="-10 -10 820 420"
+        viewBox="-120 -90 1040 580"
         className="w-full h-full max-w-full max-h-full"
         onClick={() => dispatch({ type: 'SELECT_REGION', regionId: null })}
       >
         <defs>
+          <radialGradient id="sea" cx="50%" cy="45%" r="70%">
+            <stop offset="0%" stopColor="hsl(202, 42%, 13%)" />
+            <stop offset="100%" stopColor="hsl(210, 50%, 6%)" />
+          </radialGradient>
           <pattern
-            id="map-grid"
-            width="32"
-            height="32"
+            id="waves"
+            width="46"
+            height="20"
             patternUnits="userSpaceOnUse"
+            patternTransform="rotate(0)"
           >
             <path
-              d="M32 0 L0 0 0 32"
+              d="M0 10 Q 11.5 4, 23 10 T 46 10"
               fill="none"
-              stroke="rgba(120,140,170,0.06)"
+              stroke="hsl(195, 50%, 30%)"
               strokeWidth="1"
+              opacity="0.10"
             />
           </pattern>
-          <radialGradient id="map-vignette" cx="50%" cy="45%" r="75%">
-            <stop offset="60%" stopColor="rgba(0,0,0,0)" />
-            <stop offset="100%" stopColor="rgba(0,0,0,0.45)" />
-          </radialGradient>
           <filter id="region-glow" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur stdDeviation="4" result="blur" />
             <feMerge>
@@ -37,23 +39,35 @@ export function MapView() {
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
+          <filter id="coast" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow
+              dx="0"
+              dy="0"
+              stdDeviation="6"
+              floodColor="hsl(195, 60%, 45%)"
+              floodOpacity="0.35"
+            />
+          </filter>
         </defs>
 
-        <rect x="-10" y="-10" width="820" height="420" fill="var(--color-bg)" />
-        <rect x="-10" y="-10" width="820" height="420" fill="url(#map-grid)" />
+        <rect x="-120" y="-90" width="1040" height="580" fill="url(#sea)" />
+        <rect x="-120" y="-90" width="1040" height="580" fill="url(#waves)" />
 
-        {Object.values(regions).map((r) => (
-          <RegionPolygon key={r.id} region={r} />
-        ))}
+        <g filter="url(#coast)">
+          {Object.values(regions).map((r) => (
+            <polygon
+              key={`${r.id}-land`}
+              points={r.polygon.map(([x, y]) => `${x},${y}`).join(' ')}
+              fill="hsl(210, 22%, 9%)"
+            />
+          ))}
+        </g>
 
-        <rect
-          x="-10"
-          y="-10"
-          width="820"
-          height="420"
-          fill="url(#map-vignette)"
-          className="pointer-events-none"
-        />
+        <g>
+          {Object.values(regions).map((r) => (
+            <RegionPolygon key={r.id} region={r} />
+          ))}
+        </g>
       </svg>
     </div>
   )
