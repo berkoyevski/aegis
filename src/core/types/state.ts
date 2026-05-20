@@ -32,4 +32,6 @@ export type GameState = {
   defeatConditions: DefeatCondition[]
 
   operationCooldowns: Record<OperationId, number>
+
+  mapViewBox: string
 }

@@ -2,8 +2,8 @@ import { create } from 'zustand'
 import { buildInitialState } from '../core/init'
 import { reduce } from '../core/reducer'
 import type { Action, GameState, Scenario } from '../core/types'
-import karastan from '../data/countries/karastan.json'
-import insurgencyScenario from '../data/scenarios/insurgency-karastan.json'
+import turkiye from '../data/countries/turkiye.json'
+import developmentScenario from '../data/scenarios/development-turkiye.json'
 
 type GameStore = GameState & {
   dispatch: (action: Action) => void
@@ -11,7 +11,7 @@ type GameStore = GameState & {
 }
 
 function makeInitial(): GameState {
-  return buildInitialState(insurgencyScenario as Scenario, karastan)
+  return buildInitialState(developmentScenario as Scenario, turkiye)
 }
 
 export const useGameStore = create<GameStore>((set) => ({

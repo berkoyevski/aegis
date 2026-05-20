@@ -1,0 +1,55 @@
+{
+  "id": "development-turkiye",
+  "name": "Türkiye — Kalkınma",
+  "description": "Türkiye'nin yedi coğrafi bölgesini yönet. Bölgesel eşitsizlikleri gider, her bölgeyi istikrara ve refaha ulaştır. Hükümet ve güvenlik kurumlarının desteğini koruyarak tüm bölgeleri kalkındır.",
+  "playerCountryId": "turkiye",
+  "playerRole": "leader",
+  "enabledFeatures": {
+    "diplomacy": false,
+    "hiddenThreats": true,
+    "interstateWar": false
+  },
+  "victoryCondition": { "type": "stabilize_all", "minStability": 70 },
+  "defeatConditions": [
+    { "type": "reputation_zero", "reputationId": "government" },
+    { "type": "reputation_zero", "reputationId": "military" }
+  ],
+  "initialState": {
+    "treasury": 8000,
+    "reputations": [
+      { "id": "government", "label": "Hükümet", "value": 65 },
+      { "id": "military", "label": "Asayiş", "value": 60 }
+    ],
+    "regionOverrides": {
+      "tr-marmara": {
+        "stability": 72, "hiddenThreat": 8, "intel": 75, "happiness": 58,
+        "control": { "ownerId": "turkiye", "level": 88 }
+      },
+      "tr-ege": {
+        "stability": 64, "hiddenThreat": 14, "intel": 65, "happiness": 56,
+        "control": { "ownerId": "turkiye", "level": 80 }
+      },
+      "tr-ic-anadolu": {
+        "stability": 66, "hiddenThreat": 12, "intel": 70, "happiness": 55,
+        "control": { "ownerId": "turkiye", "level": 85 }
+      },
+      "tr-akdeniz": {
+        "stability": 55, "hiddenThreat": 22, "intel": 55, "happiness": 54,
+        "control": { "ownerId": "turkiye", "level": 72 }
+      },
+      "tr-karadeniz": {
+        "stability": 52, "hiddenThreat": 25, "intel": 50, "happiness": 52,
+        "control": { "ownerId": "turkiye", "level": 70 }
+      },
+      "tr-guneydogu-anadolu": {
+        "stability": 38, "hiddenThreat": 45, "intel": 35, "happiness": 48,
+        "control": { "ownerId": "turkiye", "level": 55 }
+      },
+      "tr-dogu-anadolu": {
+        "stability": 35, "hiddenThreat": 48, "intel": 32, "happiness": 47,
+        "control": { "ownerId": "turkiye", "level": 52 }
+      }
+    }
+  },
+  "rngSeed": 7
+}

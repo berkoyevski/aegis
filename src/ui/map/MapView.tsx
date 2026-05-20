@@ -4,11 +4,14 @@ import { RegionPolygon } from './RegionPolygon'
 export function MapView() {
   const regions = useGameStore((s) => s.regions)
   const dispatch = useGameStore((s) => s.dispatch)
+  const viewBox = useGameStore((s) => s.mapViewBox)
+
+  const [vx, vy, vw, vh] = viewBox.split(' ').map(Number)
 
   return (
     <div className="relative w-full h-full flex items-center justify-center p-6 overflow-hidden">
       <svg
-        viewBox="-120 -90 1040 580"
+        viewBox={viewBox}
         className="w-full h-full max-w-full max-h-full"
         onClick={() => dispatch({ type: 'SELECT_REGION', regionId: null })}
       >
@@ -50,16 +53,12 @@ export function MapView() {
           </filter>
         </defs>
 
-        <rect x="-120" y="-90" width="1040" height="580" fill="url(#sea)" />
-        <rect x="-120" y="-90" width="1040" height="580" fill="url(#waves)" />
+        <rect x={vx} y={vy} width={vw} height={vh} fill="url(#sea)" />
+        <rect x={vx} y={vy} width={vw} height={vh} fill="url(#waves)" />
 
         <g filter="url(#coast)">
           {Object.values(regions).map((r) => (
-            <polygon
-              key={`${r.id}-land`}
-              points={r.polygon.map(([x, y]) => `${x},${y}`).join(' ')}
-              fill="hsl(210, 22%, 9%)"
-            />
+            <path key={`${r.id}-land`} d={r.path} fill="hsl(210, 22%, 9%)" />
           ))}
         </g>
 

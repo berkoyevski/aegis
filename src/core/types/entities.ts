@@ -1,4 +1,3 @@
-import type { Polygon } from './geometry'
 import type {
   CountryId,
   FactionId,
@@ -21,7 +20,10 @@ export type Region = {
   id: RegionId
   name: string
   countryId: CountryId
-  polygon: Polygon
+
+  path: string
+  labelX: number
+  labelY: number
 
   population: Population
   stability: number

@@ -5,13 +5,13 @@ export const CRISIS_THRESHOLD = 80
 export function makeInsurgentAttack(region: Region): GameEvent {
   return {
     id: `crisis-${region.id}-${Date.now()}`,
-    title: 'İsyancı Saldırısı',
-    description: `${region.name} bölgesinde gizli hücreler harekete geçti ve bir saldırı düzenlendi. Bölgedeki düzen sarsıldı. Nasıl karşılık vereceksin?`,
+    title: 'Asayiş Krizi',
+    description: `${region.name} bölgesinde güvenlik durumu kötüleşti; huzursuzluk ve düzensizlik tırmandı. Bölgedeki istikrar sarsıldı. Nasıl karşılık vereceksin?`,
     regionId: region.id,
     choices: [
       {
-        label: 'Askeri müdahale',
-        description: 'Tehdidi sert bastır — ama asker yıpranır, halk tedirgin olur.',
+        label: 'Güvenlik operasyonu',
+        description: 'Sert müdahale — tehdidi bastırır ama güvenlik güçleri yıpranır, halk tedirgin olur.',
         effect: {
           regionId: region.id,
           threatDelta: -40,

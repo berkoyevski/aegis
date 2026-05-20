@@ -3,7 +3,6 @@ import { INSURGENT_FACTION } from '../../core/types'
 import { useGameStore } from '../../store/gameStore'
 import { CapitalMarker, CityMarker, ThreatMarker } from './MapMarkers'
 import { regionColor } from './regionColor'
-import { smoothClosedPath } from './smoothPath'
 
 type Props = {
   region: Region
@@ -25,11 +24,9 @@ export function RegionPolygon({ region }: Props) {
   const { fill, fillDark, stroke, text } = regionColor(region, playerCountryId)
   const gradId = `grad-${region.id}`
 
-  const pathD = smoothClosedPath(region.polygon)
-  const cx =
-    region.polygon.reduce((s, [x]) => s + x, 0) / region.polygon.length
-  const cy =
-    region.polygon.reduce((s, [, y]) => s + y, 0) / region.polygon.length
+  const pathD = region.path
+  const cx = region.labelX
+  const cy = region.labelY
 
   return (
     <g

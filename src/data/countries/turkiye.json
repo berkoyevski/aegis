@@ -1,0 +1,79 @@
+{
+  "id": "turkiye",
+  "name": "Türkiye",
+  "capitalRegionId": "tr-ic-anadolu",
+  "viewBox": "0 0 1000 440",
+  "traits": ["large", "diverse-population", "regional-disparity"],
+  "regions": [
+    {
+      "id": "tr-marmara",
+      "name": "Marmara",
+      "path": "M 96 92 L 78 120 L 70 150 L 92 168 L 130 158 L 158 178 L 196 168 L 214 140 L 200 112 L 168 96 L 188 78 L 156 64 L 120 70 L 100 60 L 72 72 L 60 96 L 86 104 Z",
+      "labelX": 128,
+      "labelY": 124,
+      "population": 26000000,
+      "happiness": 58,
+      "description": "Kuzeybatı. İstanbul ve sanayi merkezi, en kalabalık bölge."
+    },
+    {
+      "id": "tr-ege",
+      "name": "Ege",
+      "path": "M 70 150 L 50 188 L 38 238 L 58 286 L 96 312 L 138 300 L 168 268 L 184 226 L 196 192 L 196 168 L 158 178 L 130 158 L 92 168 Z",
+      "labelX": 104,
+      "labelY": 244,
+      "population": 10000000,
+      "happiness": 56,
+      "description": "Batı kıyısı. Tarım, turizm ve liman ticareti."
+    },
+    {
+      "id": "tr-akdeniz",
+      "name": "Akdeniz",
+      "path": "M 96 312 L 130 350 L 196 372 L 290 384 L 392 380 L 470 360 L 528 330 L 560 300 L 532 280 L 470 286 L 400 300 L 328 296 L 262 280 L 210 268 L 168 268 L 138 300 Z",
+      "labelX": 308,
+      "labelY": 338,
+      "population": 10500000,
+      "happiness": 54,
+      "description": "Güney sahili. Toroslar, narenciye tarımı ve turizm."
+    },
+    {
+      "id": "tr-ic-anadolu",
+      "name": "İç Anadolu",
+      "path": "M 196 192 L 184 226 L 168 268 L 210 268 L 262 280 L 328 296 L 400 300 L 470 286 L 532 280 L 560 240 L 548 196 L 510 168 L 448 156 L 380 150 L 318 156 L 260 168 L 222 182 Z",
+      "labelX": 372,
+      "labelY": 226,
+      "population": 13000000,
+      "happiness": 55,
+      "description": "Merkez plato. Başkent Ankara, devletin kalbi ve tahıl ovaları."
+    },
+    {
+      "id": "tr-karadeniz",
+      "name": "Karadeniz",
+      "path": "M 200 112 L 214 140 L 196 168 L 196 192 L 222 182 L 260 168 L 318 156 L 380 150 L 448 156 L 510 168 L 548 196 L 600 184 L 668 168 L 730 150 L 778 124 L 740 96 L 672 84 L 596 80 L 512 78 L 432 76 L 352 74 L 280 80 L 230 96 Z",
+      "labelX": 470,
+      "labelY": 122,
+      "population": 7500000,
+      "happiness": 52,
+      "description": "Kuzey şeridi. Yağışlı dağlar, çay ve fındık üretimi."
+    },
+    {
+      "id": "tr-dogu-anadolu",
+      "name": "Doğu Anadolu",
+      "path": "M 548 196 L 560 240 L 560 300 L 620 320 L 700 332 L 780 330 L 852 312 L 912 282 L 944 240 L 920 196 L 866 168 L 800 150 L 778 124 L 730 150 L 668 168 L 600 184 Z",
+      "labelX": 752,
+      "labelY": 246,
+      "population": 5700000,
+      "happiness": 47,
+      "description": "Yüksek doğu dağları. Sert iklim, hayvancılık, seyrek nüfus."
+    },
+    {
+      "id": "tr-guneydogu-anadolu",
+      "name": "Güneydoğu Anadolu",
+      "path": "M 560 300 L 528 330 L 560 360 L 624 378 L 700 384 L 776 376 L 838 354 L 880 326 L 912 282 L 852 312 L 780 330 L 700 332 L 620 320 Z",
+      "labelX": 712,
+      "labelY": 344,
+      "population": 9000000,
+      "happiness": 48,
+      "description": "Güneydoğu köşe. Verimli ovalar, sulama tarımı ve sınır bölgesi."
+    }
+  ]
+}
