@@ -2,8 +2,8 @@
 
 > Rebel Inc. çekirdeği üzerine kurulmuş, çok-senaryolu, çok-ülkeli bir grand strategy sandbox. Web tabanlı, tek/çok oyunculu büyüme potansiyelli.
 
-**Doküman versiyonu:** 0.6 — 2026-05-19
-**Durum:** Sprint 0-6 tamamlandı (kod). Çalışan: SVG harita, state, zaman+bütçe, girişim sistemi, tehdit+kriz, kontrol ele geçirme + kazanma/kaybetme + bitiş ekranı. BEKLEYEN: operasyonlar (proaktif aksiyonlar) ve Sprint 7 dengeleme — kontrol-flip/zafer/yenilgi tam görsel testi dengeleme ile birlikte yapılacak. Sıradaki: operasyonlar + Sprint 7 (cila, denge, gerçek harita şekilleri).
+**Doküman versiyonu:** 0.7 — 2026-05-19
+**Durum:** Tüm MVP mekanikleri tamam: harita (organik poligonlar), state, zaman+bütçe, girişimler, krizler, operasyonlar, kontrol ele geçirme, kazanma/kaybetme. Sprint 7 devam ediyor: organik harita yapıldı. KALAN: sayı dengeleme + kontrol-flip/zafer/yenilgi bütünsel oyun testi, görsel cila, (opsiyonel) daha kıvrımlı sınırlar, ses.
 
 ---
 

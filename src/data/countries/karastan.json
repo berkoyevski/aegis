@@ -7,56 +7,56 @@
     {
       "id": "kr-doras",
       "name": "Doras",
-      "polygon": [[0, 0], [200, 0], [200, 200], [0, 200], [0, 0]],
+      "polygon": [[18, 28], [208, 16], [212, 222], [12, 205]],
       "population": { "total": 820000, "happiness": 50 },
       "description": "Kuzeybatıdaki orman bölgesi. Tarım ve kereste."
     },
     {
       "id": "kr-vesh",
       "name": "Vesh",
-      "polygon": [[200, 0], [400, 0], [400, 200], [200, 200], [200, 0]],
+      "polygon": [[208, 16], [400, 30], [398, 200], [212, 222]],
       "population": { "total": 1100000, "happiness": 50 },
       "description": "Kuzey ovaları. Tahıl üretimi."
     },
     {
       "id": "kr-norem",
       "name": "Norem",
-      "polygon": [[400, 0], [600, 0], [600, 200], [400, 200], [400, 0]],
+      "polygon": [[400, 30], [602, 14], [618, 212], [398, 200]],
       "population": { "total": 640000, "happiness": 50 },
       "description": "Kuzeydoğu dağ kasabaları. Madencilik."
     },
     {
       "id": "kr-talia",
       "name": "Talia",
-      "polygon": [[600, 0], [800, 0], [800, 200], [600, 200], [600, 0]],
+      "polygon": [[602, 14], [796, 34], [800, 198], [618, 212]],
       "population": { "total": 720000, "happiness": 50 },
       "description": "Doğu vadileri. Sınıra yakın, tarihsel olarak çatışmalı."
     },
     {
       "id": "kr-selir",
       "name": "Selir",
-      "polygon": [[0, 200], [200, 200], [200, 400], [0, 400], [0, 200]],
+      "polygon": [[12, 205], [212, 222], [216, 400], [28, 384]],
       "population": { "total": 530000, "happiness": 50 },
       "description": "Batı stepleri. Hayvancılık, dağınık kabileler."
     },
     {
       "id": "kr-caval",
       "name": "Caval",
-      "polygon": [[200, 200], [400, 200], [400, 400], [200, 400], [200, 200]],
+      "polygon": [[212, 222], [398, 200], [404, 390], [216, 400]],
       "population": { "total": 1550000, "happiness": 60 },
       "description": "Başkent. Merkezi platoda, devletin kalbi."
     },
     {
       "id": "kr-ayven",
       "name": "Ayven",
-      "polygon": [[400, 200], [600, 200], [600, 400], [400, 400], [400, 200]],
+      "polygon": [[398, 200], [618, 212], [608, 398], [404, 390]],
       "population": { "total": 980000, "happiness": 55 },
       "description": "Güney kıyısı. Liman ve ticaret."
     },
     {
       "id": "kr-karth",
       "name": "Karth",
-      "polygon": [[600, 200], [800, 200], [800, 400], [600, 400], [600, 200]],
+      "polygon": [[618, 212], [800, 198], [788, 378], [608, 398]],
       "population": { "total": 460000, "happiness": 45 },
       "description": "Güneydoğu çölü. Petrol sahaları ama dağınık nüfus."
     }
