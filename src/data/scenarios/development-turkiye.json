@@ -1,7 +1,7 @@
 {
   "id": "development-turkiye",
   "name": "Türkiye — Kalkınma",
-  "description": "Türkiye'nin yedi coğrafi bölgesini yönet. Bölgesel eşitsizlikleri gider, her bölgeyi istikrara ve refaha ulaştır. Hükümet ve güvenlik kurumlarının desteğini koruyarak tüm bölgeleri kalkındır.",
+  "description": "Türkiye'nin coğrafi bölgelerini yönet. Bölgesel eşitsizlikleri gider, her bölgeyi istikrara ve refaha ulaştır. Hükümet ve güvenlik kurumlarının desteğini koruyarak tüm bölgeleri kalkındır.",
   "playerCountryId": "turkiye",
   "playerRole": "leader",
   "enabledFeatures": {
@@ -15,40 +15,26 @@
     { "type": "reputation_zero", "reputationId": "military" }
   ],
   "initialState": {
-    "treasury": 8000,
+    "treasury": 10000,
     "reputations": [
       { "id": "government", "label": "Hükümet", "value": 65 },
       { "id": "military", "label": "Asayiş", "value": 60 }
     ],
     "regionOverrides": {
-      "tr-marmara": {
-        "stability": 72, "hiddenThreat": 8, "intel": 75, "happiness": 58,
-        "control": { "ownerId": "turkiye", "level": 88 }
-      },
-      "tr-ege": {
-        "stability": 64, "hiddenThreat": 14, "intel": 65, "happiness": 56,
-        "control": { "ownerId": "turkiye", "level": 80 }
-      },
-      "tr-ic-anadolu": {
-        "stability": 66, "hiddenThreat": 12, "intel": 70, "happiness": 55,
-        "control": { "ownerId": "turkiye", "level": 85 }
-      },
-      "tr-akdeniz": {
-        "stability": 55, "hiddenThreat": 22, "intel": 55, "happiness": 54,
-        "control": { "ownerId": "turkiye", "level": 72 }
-      },
-      "tr-karadeniz": {
-        "stability": 52, "hiddenThreat": 25, "intel": 50, "happiness": 52,
-        "control": { "ownerId": "turkiye", "level": 70 }
-      },
-      "tr-guneydogu-anadolu": {
-        "stability": 38, "hiddenThreat": 45, "intel": 35, "happiness": 48,
-        "control": { "ownerId": "turkiye", "level": 55 }
-      },
-      "tr-dogu-anadolu": {
-        "stability": 35, "hiddenThreat": 48, "intel": 32, "happiness": 47,
-        "control": { "ownerId": "turkiye", "level": 52 }
-      }
+      "tr-guney-marmara": { "stability": 75, "hiddenThreat": 6, "intel": 80, "control": { "ownerId": "turkiye", "level": 90 } },
+      "tr-ankara": { "stability": 70, "hiddenThreat": 8, "intel": 78, "control": { "ownerId": "turkiye", "level": 88 } },
+      "tr-ege": { "stability": 66, "hiddenThreat": 12, "intel": 68, "control": { "ownerId": "turkiye", "level": 82 } },
+      "tr-trakya": { "stability": 64, "hiddenThreat": 12, "intel": 66, "control": { "ownerId": "turkiye", "level": 80 } },
+      "tr-bati-akdeniz": { "stability": 60, "hiddenThreat": 16, "intel": 62, "control": { "ownerId": "turkiye", "level": 76 } },
+      "tr-ic-bati-anadolu": { "stability": 56, "hiddenThreat": 20, "intel": 56, "control": { "ownerId": "turkiye", "level": 72 } },
+      "tr-cukurova": { "stability": 54, "hiddenThreat": 24, "intel": 55, "control": { "ownerId": "turkiye", "level": 70 } },
+      "tr-konya": { "stability": 52, "hiddenThreat": 26, "intel": 52, "control": { "ownerId": "turkiye", "level": 68 } },
+      "tr-bati-karadeniz": { "stability": 52, "hiddenThreat": 26, "intel": 50, "control": { "ownerId": "turkiye", "level": 68 } },
+      "tr-dogu-karadeniz": { "stability": 50, "hiddenThreat": 28, "intel": 48, "control": { "ownerId": "turkiye", "level": 66 } },
+      "tr-orta-firat": { "stability": 42, "hiddenThreat": 40, "intel": 40, "control": { "ownerId": "turkiye", "level": 58 } },
+      "tr-dicle": { "stability": 38, "hiddenThreat": 46, "intel": 36, "control": { "ownerId": "turkiye", "level": 54 } },
+      "tr-erzurum-kars": { "stability": 38, "hiddenThreat": 44, "intel": 35, "control": { "ownerId": "turkiye", "level": 54 } },
+      "tr-van": { "stability": 34, "hiddenThreat": 50, "intel": 32, "control": { "ownerId": "turkiye", "level": 50 } }
     }
   },
   "rngSeed": 7

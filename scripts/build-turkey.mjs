@@ -18,54 +18,75 @@ function fetchJSON(url) {
 }
 
 const REGIONS = {
-  'tr-marmara': {
-    name: 'Marmara',
-    pop: 26000000,
-    happiness: 58,
-    desc: 'Kuzeybatı. İstanbul ve sanayi merkezi, en kalabalık bölge.',
-    iller: ['İstanbul', 'Edirne', 'Kırklareli', 'Tekirdağ', 'Çanakkale', 'Balıkesir', 'Bursa', 'Yalova', 'Kocaeli', 'Sakarya', 'Bilecik'],
+  'tr-trakya': {
+    name: 'Trakya', pop: 3000000, happiness: 57, terrain: 'plain',
+    desc: 'Avrupa yakası. Ergene ovası, tarım ve sınır kapıları.',
+    iller: ['Edirne', 'Kırklareli', 'Tekirdağ', 'Çanakkale'],
+  },
+  'tr-guney-marmara': {
+    name: 'Güney Marmara', pop: 23000000, happiness: 58, terrain: 'city',
+    desc: 'İstanbul ve sanayi kalbi. En kalabalık, en zengin bölge.',
+    iller: ['İstanbul', 'Kocaeli', 'Sakarya', 'Bursa', 'Yalova', 'Bilecik', 'Balıkesir'],
   },
   'tr-ege': {
-    name: 'Ege',
-    pop: 10000000,
-    happiness: 56,
-    desc: 'Batı kıyısı. Tarım, turizm ve liman ticareti.',
-    iller: ['İzmir', 'Manisa', 'Aydın', 'Denizli', 'Muğla', 'Uşak', 'Kütahya', 'Afyon', 'Afyonkarahisar'],
+    name: 'Ege', pop: 8000000, happiness: 56, terrain: 'coast',
+    desc: 'Batı kıyısı. Turizm, zeytin, liman ticareti.',
+    iller: ['İzmir', 'Manisa', 'Aydın', 'Denizli', 'Muğla'],
   },
-  'tr-akdeniz': {
-    name: 'Akdeniz',
-    pop: 10500000,
-    happiness: 54,
-    desc: 'Güney sahili. Toroslar, narenciye tarımı ve turizm.',
-    iller: ['Antalya', 'Isparta', 'Burdur', 'Mersin', 'İçel', 'Adana', 'Osmaniye', 'Hatay', 'Kahramanmaraş', 'K.Maraş'],
+  'tr-ic-bati-anadolu': {
+    name: 'İç Batı Anadolu', pop: 2200000, happiness: 53, terrain: 'mountain',
+    desc: 'Ege ardı yaylalar. Maden ve termal kaynaklar.',
+    iller: ['Kütahya', 'Uşak', 'Afyon', 'Afyonkarahisar'],
   },
-  'tr-ic-anadolu': {
-    name: 'İç Anadolu',
-    pop: 13000000,
-    happiness: 55,
-    desc: 'Merkez plato. Başkent Ankara ve tahıl ovaları.',
-    iller: ['Ankara', 'Konya', 'Kayseri', 'Eskişehir', 'Sivas', 'Yozgat', 'Aksaray', 'Karaman', 'Kırıkkale', 'Kırşehir', 'Nevşehir', 'Niğde', 'Çankırı'],
+  'tr-bati-akdeniz': {
+    name: 'Batı Akdeniz', pop: 3000000, happiness: 55, terrain: 'mountain',
+    desc: 'Toroslar ve Antalya kıyısı. Turizm ve seracılık.',
+    iller: ['Antalya', 'Isparta', 'Burdur'],
   },
-  'tr-karadeniz': {
-    name: 'Karadeniz',
-    pop: 7500000,
-    happiness: 52,
-    desc: 'Kuzey şeridi. Yağışlı dağlar, çay ve fındık.',
-    iller: ['Zonguldak', 'Bartın', 'Karabük', 'Kastamonu', 'Sinop', 'Çorum', 'Amasya', 'Tokat', 'Samsun', 'Ordu', 'Giresun', 'Trabzon', 'Rize', 'Artvin', 'Gümüşhane', 'Bayburt', 'Bolu', 'Düzce'],
+  'tr-cukurova': {
+    name: 'Çukurova', pop: 7500000, happiness: 53, terrain: 'plain',
+    desc: 'Doğu Akdeniz ovaları. Pamuk, narenciye, sanayi.',
+    iller: ['Mersin', 'İçel', 'Adana', 'Osmaniye', 'Hatay', 'Kahramanmaraş', 'K.Maraş'],
   },
-  'tr-dogu-anadolu': {
-    name: 'Doğu Anadolu',
-    pop: 5700000,
-    happiness: 47,
-    desc: 'Yüksek doğu dağları. Sert iklim, hayvancılık.',
-    iller: ['Erzurum', 'Erzincan', 'Kars', 'Ardahan', 'Iğdır', 'Ağrı', 'Van', 'Muş', 'Bitlis', 'Bingöl', 'Tunceli', 'Elazığ', 'Malatya', 'Hakkari', 'Hakkâri'],
+  'tr-ankara': {
+    name: 'Ankara Bölümü', pop: 8500000, happiness: 56, terrain: 'city',
+    desc: 'Başkent ve çevresi. İdari merkez, tahıl ovaları.',
+    iller: ['Ankara', 'Eskişehir', 'Kırıkkale', 'Çankırı', 'Aksaray'],
   },
-  'tr-guneydogu-anadolu': {
-    name: 'Güneydoğu Anadolu',
-    pop: 9000000,
-    happiness: 48,
-    desc: 'Güneydoğu. Verimli ovalar, sulama tarımı.',
-    iller: ['Gaziantep', 'Şanlıurfa', 'Urfa', 'Diyarbakır', 'Mardin', 'Batman', 'Siirt', 'Şırnak', 'Kilis', 'Adıyaman'],
+  'tr-konya': {
+    name: 'Konya-Kızılırmak', pop: 5000000, happiness: 51, terrain: 'plain',
+    desc: 'Orta Anadolu platosu. Tahıl ambarı, geniş bozkır.',
+    iller: ['Konya', 'Karaman', 'Niğde', 'Nevşehir', 'Kırşehir', 'Sivas', 'Yozgat', 'Kayseri'],
+  },
+  'tr-bati-karadeniz': {
+    name: 'Batı Karadeniz', pop: 4000000, happiness: 51, terrain: 'forest',
+    desc: 'Ormanlık kuzey dağları. Kömür, kereste, fındık.',
+    iller: ['Zonguldak', 'Bartın', 'Karabük', 'Kastamonu', 'Sinop', 'Çorum', 'Amasya', 'Tokat', 'Bolu', 'Düzce'],
+  },
+  'tr-dogu-karadeniz': {
+    name: 'Doğu Karadeniz', pop: 3500000, happiness: 50, terrain: 'forest',
+    desc: 'Yağışlı sarp dağlar. Çay, fındık, dik vadiler.',
+    iller: ['Samsun', 'Ordu', 'Giresun', 'Trabzon', 'Rize', 'Artvin', 'Gümüşhane', 'Bayburt'],
+  },
+  'tr-erzurum-kars': {
+    name: 'Erzurum-Kars', pop: 2500000, happiness: 47, terrain: 'mountain',
+    desc: 'Yüksek kuzeydoğu yaylaları. Sert kış, hayvancılık.',
+    iller: ['Erzurum', 'Erzincan', 'Kars', 'Ardahan', 'Iğdır', 'Ağrı'],
+  },
+  'tr-van': {
+    name: 'Van Bölümü', pop: 3500000, happiness: 46, terrain: 'lake',
+    desc: 'Van Gölü çevresi ve doğu dağları. Seyrek nüfus.',
+    iller: ['Van', 'Muş', 'Bitlis', 'Bingöl', 'Tunceli', 'Elazığ', 'Malatya', 'Hakkari', 'Hakkâri'],
+  },
+  'tr-orta-firat': {
+    name: 'Orta Fırat', pop: 5500000, happiness: 49, terrain: 'plain',
+    desc: 'Fırat havzası. Sulama tarımı, antik kentler.',
+    iller: ['Gaziantep', 'Kilis', 'Adıyaman', 'Şanlıurfa', 'Urfa'],
+  },
+  'tr-dicle': {
+    name: 'Dicle', pop: 4000000, happiness: 48, terrain: 'plain',
+    desc: 'Dicle havzası ve güneydoğu sınırı. Verimli ovalar.',
+    iller: ['Diyarbakır', 'Mardin', 'Batman', 'Siirt', 'Şırnak'],
   },
 }
 
@@ -107,7 +128,7 @@ function ringToPath(ring) {
 }
 
 const out = {
-  id: 'turkiye', name: 'Türkiye', capitalRegionId: 'tr-ic-anadolu',
+  id: 'turkiye', name: 'Türkiye', capitalRegionId: 'tr-ankara',
   viewBox: `0 0 ${W} ${H}`,
   traits: ['large', 'diverse-population', 'regional-disparity'],
   regions: [],
@@ -131,11 +152,11 @@ for (const [id, r] of Object.entries(REGIONS)) {
   const d = keep.map((p) => ringToPath(p[0])).join(' ')
   const c = turf.centroid(merged)
   const [lx, ly] = project(c.geometry.coordinates)
-  const labelNudge = { 'tr-akdeniz': 34, 'tr-karadeniz': -6 }
+  const labelNudge = { 'tr-cukurova': 12, 'tr-konya': 8 }
   out.regions.push({
     id, name: r.name, path: d,
     labelX: Math.round(lx), labelY: Math.round(ly + (labelNudge[id] ?? 0)),
-    population: r.pop, happiness: r.happiness, description: r.desc,
+    population: r.pop, happiness: r.happiness, terrain: r.terrain, description: r.desc,
   })
   console.log(`${r.name}: ${used.length} il, path ${d.length} char`)
 }
