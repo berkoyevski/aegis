@@ -2,6 +2,7 @@ import { useGameStore } from './store/gameStore'
 import { useGameLoop } from './ui/hooks/useGameLoop'
 import { MapView } from './ui/map/MapView'
 import { EventModal } from './ui/modals/EventModal'
+import { GameOverModal } from './ui/modals/GameOverModal'
 import { DebugPanel } from './ui/panels/DebugPanel'
 import { InitiativePanel } from './ui/panels/InitiativePanel'
 import { TopBar } from './ui/panels/TopBar'
@@ -34,6 +35,7 @@ function App() {
       </main>
 
       <EventModal />
+      <GameOverModal />
     </div>
   )
 }

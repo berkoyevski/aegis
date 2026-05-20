@@ -76,5 +76,7 @@ export function buildInitialState(
     status: 'playing',
     selectedRegionId: null,
     activeEvent: null,
+    victoryCondition: scenario.victoryCondition,
+    defeatConditions: scenario.defeatConditions,
   }
 }
