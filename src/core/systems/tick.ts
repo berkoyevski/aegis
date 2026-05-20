@@ -98,14 +98,40 @@ export function tickState(state: GameState): GameState {
 
   const tickedState: GameState = { ...state, regions }
 
+  const playerRegions = Object.values(regions).filter(
+    (r) => r.control.ownerId === state.playerCountryId
+  )
+  const n = playerRegions.length || 1
+  const avgStability =
+    playerRegions.reduce((s, r) => s + r.stability, 0) / n
+  const avgThreat =
+    playerRegions.reduce((s, r) => s + r.hiddenThreat, 0) / n
+  const govDelta = (avgStability - 50) * 0.01
+  const milDelta = (35 - avgThreat) * 0.01
+
   const countries: Record<CountryId, Country> = {}
   for (const [id, country] of Object.entries(state.countries)) {
     const baseIncome = computeIncome(tickedState, id)
     const extra =
       id === state.playerCountryId ? initiativeIncome - totalUpkeep : 0
+
+    let reputations = country.reputations
+    if (id === state.playerCountryId) {
+      reputations = country.reputations.map((rep) => {
+        if (rep.id === 'government') {
+          return { ...rep, value: clamp(rep.value + govDelta, 0, 100) }
+        }
+        if (rep.id === 'military') {
+          return { ...rep, value: clamp(rep.value + milDelta, 0, 100) }
+        }
+        return rep
+      })
+    }
+
     countries[id] = {
       ...country,
       treasury: country.treasury + baseIncome + extra,
+      reputations,
     }
   }
 
