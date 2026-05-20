@@ -78,5 +78,6 @@ export function buildInitialState(
     activeEvent: null,
     victoryCondition: scenario.victoryCondition,
     defeatConditions: scenario.defeatConditions,
+    operationCooldowns: {},
   }
 }

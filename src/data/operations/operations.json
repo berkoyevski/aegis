@@ -1,0 +1,41 @@
+[
+  {
+    "id": "op-raid",
+    "name": "Baskın",
+    "description": "Askeri baskın gizli tehdidi sert biçimde kırar.",
+    "cost": 200,
+    "cooldown": 15,
+    "effect": {
+      "threatDelta": -35,
+      "reputationDeltas": [{ "id": "military", "amount": -3 }]
+    }
+  },
+  {
+    "id": "op-negotiate",
+    "name": "Müzakere",
+    "description": "Yerel liderlerle uzlaşma düzeni ve memnuniyeti artırır.",
+    "cost": 250,
+    "cooldown": 20,
+    "effect": {
+      "stabilityDelta": 12,
+      "happinessDelta": 5,
+      "reputationDeltas": [{ "id": "government", "amount": -2 }]
+    }
+  },
+  {
+    "id": "op-propaganda",
+    "name": "Propaganda",
+    "description": "Bilgi kampanyası halkı kazanır ve istihbarat sağlar.",
+    "cost": 150,
+    "cooldown": 12,
+    "effect": { "happinessDelta": 8, "intelDelta": 6 }
+  },
+  {
+    "id": "op-surge",
+    "name": "Takviye",
+    "description": "Acil güvenlik takviyesi düzeni artırır, tehdidi azaltır.",
+    "cost": 300,
+    "cooldown": 18,
+    "effect": { "stabilityDelta": 8, "threatDelta": -10 }
+  }
+]

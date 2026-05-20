@@ -1,4 +1,5 @@
 import { getInitiative } from './initiatives'
+import { getOperation } from './operations'
 import { applyEventEffect } from './systems/events'
 import { tickState } from './systems/tick'
 import type { Action, GameState } from './types'
@@ -80,7 +81,34 @@ export function reduce(state: GameState, action: Action): GameState {
       return { ...applied, activeEvent: null }
     }
 
-    case 'EXECUTE_OPERATION':
+    case 'EXECUTE_OPERATION': {
+      const op = getOperation(action.operationId)
+      const targetId = action.targetRegionId
+      if (!op || !targetId) return state
+      if (!state.regions[targetId]) return state
+
+      const player = state.countries[state.playerCountryId]
+      if (player.treasury < op.cost) return state
+
+      const availableAt = state.operationCooldowns[op.id] ?? 0
+      if (state.gameTime < availableAt) return state
+
+      const effect = {
+        ...op.effect,
+        regionId: targetId,
+        treasuryDelta: (op.effect.treasuryDelta ?? 0) - op.cost,
+      }
+      const applied = applyEventEffect(state, effect)
+
+      return {
+        ...applied,
+        operationCooldowns: {
+          ...state.operationCooldowns,
+          [op.id]: state.gameTime + op.cooldown,
+        },
+      }
+    }
+
     case 'RESET':
       return state
 

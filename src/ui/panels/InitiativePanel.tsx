@@ -3,8 +3,61 @@ import {
   BRANCHES,
   initiativesByBranch,
 } from '../../core/initiatives'
-import type { Initiative, Region } from '../../core/types'
+import { ALL_OPERATIONS } from '../../core/operations'
+import type { Initiative, Operation, Region } from '../../core/types'
 import { useGameStore } from '../../store/gameStore'
+
+function OperationButton({ op, region }: { op: Operation; region: Region }) {
+  const dispatch = useGameStore((s) => s.dispatch)
+  const treasury = useGameStore((s) => s.countries[s.playerCountryId].treasury)
+  const gameTime = useGameStore((s) => s.gameTime)
+  const availableAt = useGameStore((s) => s.operationCooldowns[op.id] ?? 0)
+
+  const remaining = Math.max(0, availableAt - gameTime)
+  const onCooldown = remaining > 0
+  const canAfford = treasury >= op.cost
+  const disabled = onCooldown || !canAfford
+
+  let label: string
+  if (onCooldown) label = `${remaining} gün`
+  else label = `${op.name} · ₳${op.cost}`
+
+  return (
+    <button
+      disabled={disabled}
+      title={op.description}
+      onClick={() =>
+        dispatch({
+          type: 'EXECUTE_OPERATION',
+          operationId: op.id,
+          targetRegionId: region.id,
+        })
+      }
+      className={`text-xs px-2.5 py-1.5 rounded-md border whitespace-nowrap transition-colors ${
+        disabled
+          ? 'border-[var(--color-border)] text-[var(--color-text-muted)] opacity-50 cursor-not-allowed'
+          : 'border-sky-500/50 text-sky-300 hover:bg-sky-500/10'
+      }`}
+    >
+      {label}
+    </button>
+  )
+}
+
+function OperationsRow({ region }: { region: Region }) {
+  return (
+    <div className="px-4 py-3 border-b border-[var(--color-border)]">
+      <div className="text-[10px] uppercase tracking-wider text-[var(--color-text-muted)] mb-2">
+        Operasyonlar (anlık)
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {ALL_OPERATIONS.map((op) => (
+          <OperationButton key={op.id} op={op} region={region} />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 function effectSummary(init: Initiative): string {
   const e = init.effects
@@ -121,6 +174,8 @@ export function InitiativePanel() {
         </span>
         <span className="ml-2 text-sm text-[var(--color-text)]">{region.name}</span>
       </div>
+
+      <OperationsRow region={region} />
 
       <div className="p-4 grid grid-cols-3 gap-4">
         {BRANCHES.map((branch) => (
