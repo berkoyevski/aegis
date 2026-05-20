@@ -71,7 +71,7 @@ export function RegionPolygon({ region }: Props) {
           ? 'isyancı'
           : isCapital
           ? 'başkent'
-          : `stab ${region.stability}`}
+          : `stab ${Math.round(region.stability)}`}
       </text>
     </g>
   )

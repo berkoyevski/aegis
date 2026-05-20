@@ -1,5 +1,6 @@
-import { computeIncome } from './systems/economy'
-import type { Action, Country, CountryId, GameState } from './types'
+import { getInitiative } from './initiatives'
+import { tickState } from './systems/tick'
+import type { Action, GameState } from './types'
 
 export function reduce(state: GameState, action: Action): GameState {
   switch (action.type) {
@@ -15,17 +16,61 @@ export function reduce(state: GameState, action: Action): GameState {
     case 'SELECT_REGION':
       return { ...state, selectedRegionId: action.regionId }
 
-    case 'TICK': {
-      const countries: Record<CountryId, Country> = {}
-      for (const [id, country] of Object.entries(state.countries)) {
-        const income = computeIncome(state, id)
-        countries[id] = { ...country, treasury: country.treasury + income }
+    case 'TICK':
+      return tickState(state)
+
+    case 'ACTIVATE_INITIATIVE': {
+      const region = state.regions[action.regionId]
+      const initiative = getInitiative(action.initiativeId)
+      if (!region || !initiative) return state
+      if (region.activeInitiatives.includes(initiative.id)) return state
+
+      const player = state.countries[state.playerCountryId]
+      if (player.treasury < initiative.cost) return state
+
+      const reqsMet = initiative.requires.every((r) =>
+        region.activeInitiatives.includes(r)
+      )
+      if (!reqsMet) return state
+
+      return {
+        ...state,
+        countries: {
+          ...state.countries,
+          [player.id]: {
+            ...player,
+            treasury: player.treasury - initiative.cost,
+          },
+        },
+        regions: {
+          ...state.regions,
+          [region.id]: {
+            ...region,
+            activeInitiatives: [...region.activeInitiatives, initiative.id],
+          },
+        },
       }
-      return { ...state, gameTime: state.gameTime + 1, countries }
     }
 
-    case 'ACTIVATE_INITIATIVE':
-    case 'DEACTIVATE_INITIATIVE':
+    case 'DEACTIVATE_INITIATIVE': {
+      const region = state.regions[action.regionId]
+      if (!region || !region.activeInitiatives.includes(action.initiativeId)) {
+        return state
+      }
+      return {
+        ...state,
+        regions: {
+          ...state.regions,
+          [region.id]: {
+            ...region,
+            activeInitiatives: region.activeInitiatives.filter(
+              (id) => id !== action.initiativeId
+            ),
+          },
+        },
+      }
+    }
+
     case 'EXECUTE_OPERATION':
     case 'RESET':
       return state

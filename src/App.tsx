@@ -2,6 +2,7 @@ import { useGameStore } from './store/gameStore'
 import { useGameLoop } from './ui/hooks/useGameLoop'
 import { MapView } from './ui/map/MapView'
 import { DebugPanel } from './ui/panels/DebugPanel'
+import { InitiativePanel } from './ui/panels/InitiativePanel'
 import { TopBar } from './ui/panels/TopBar'
 
 function App() {
@@ -22,7 +23,12 @@ function App() {
       </header>
 
       <main className="flex-1 grid grid-cols-[1fr_420px] min-h-0 overflow-hidden">
-        <MapView />
+        <div className="flex flex-col min-h-0">
+          <div className="flex-1 min-h-0">
+            <MapView />
+          </div>
+          <InitiativePanel />
+        </div>
         <DebugPanel />
       </main>
     </div>

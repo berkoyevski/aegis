@@ -1,0 +1,102 @@
+[
+  {
+    "id": "gov-clinic",
+    "name": "Sağlık Ocağı",
+    "description": "Temel sağlık hizmeti halkın güvenini artırır.",
+    "branch": "governance",
+    "tier": 1,
+    "cost": 300,
+    "requires": [],
+    "effects": { "happinessBonus": 0.4 },
+    "scope": "region"
+  },
+  {
+    "id": "gov-school",
+    "name": "Okul",
+    "description": "Eğitim hem mutluluğu hem düzeni güçlendirir.",
+    "branch": "governance",
+    "tier": 2,
+    "cost": 400,
+    "requires": ["gov-clinic"],
+    "effects": { "happinessBonus": 0.2, "stabilityBonus": 0.2 },
+    "scope": "region"
+  },
+  {
+    "id": "gov-court",
+    "name": "Adalet Sarayı",
+    "description": "Hukuk düzeni stabiliteyi kalıcı kılar.",
+    "branch": "governance",
+    "tier": 3,
+    "cost": 600,
+    "requires": ["gov-school"],
+    "effects": { "stabilityBonus": 0.4 },
+    "scope": "region"
+  },
+  {
+    "id": "sec-police",
+    "name": "Polis Karakolu",
+    "description": "Yerel güvenlik gizli tehdidi baskılar.",
+    "branch": "security",
+    "tier": 1,
+    "cost": 350,
+    "requires": [],
+    "effects": { "threatReduction": 0.4 },
+    "scope": "region"
+  },
+  {
+    "id": "sec-intel",
+    "name": "İstihbarat Ağı",
+    "description": "Gizli hücreleri görünür kılar.",
+    "branch": "security",
+    "tier": 2,
+    "cost": 500,
+    "requires": ["sec-police"],
+    "effects": { "intelBonus": 0.6 },
+    "scope": "region"
+  },
+  {
+    "id": "sec-patrol",
+    "name": "Devriye Birliği",
+    "description": "Sürekli devriye, tehdidi azaltır ama gider getirir.",
+    "branch": "security",
+    "tier": 2,
+    "cost": 450,
+    "upkeep": 5,
+    "requires": ["sec-police"],
+    "effects": { "threatReduction": 0.3, "stabilityBonus": 0.2 },
+    "scope": "region"
+  },
+  {
+    "id": "eco-market",
+    "name": "Pazar Yeri",
+    "description": "Ticaret merkezi bölgeden gelir sağlar.",
+    "branch": "economy",
+    "tier": 1,
+    "cost": 300,
+    "requires": [],
+    "effects": { "incomeBonus": 15 },
+    "scope": "region"
+  },
+  {
+    "id": "eco-farm",
+    "name": "Tarım Desteği",
+    "description": "Tarımsal kalkınma gelir ve mutluluk getirir.",
+    "branch": "economy",
+    "tier": 1,
+    "cost": 400,
+    "requires": [],
+    "effects": { "incomeBonus": 12, "happinessBonus": 0.1 },
+    "scope": "region"
+  },
+  {
+    "id": "eco-road",
+    "name": "Yol Ağı",
+    "description": "Altyapı ticareti ve düzeni güçlendirir.",
+    "branch": "economy",
+    "tier": 2,
+    "cost": 700,
+    "requires": ["eco-market"],
+    "effects": { "incomeBonus": 10, "stabilityBonus": 0.2 },
+    "scope": "region"
+  }
+]
