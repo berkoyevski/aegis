@@ -1,6 +1,6 @@
 import { useGameStore } from './store/gameStore'
 import { useGameLoop } from './ui/hooks/useGameLoop'
-import { MapView } from './ui/map/MapView'
+import { MapViewLeaflet } from './ui/map/MapViewLeaflet'
 import { EventModal } from './ui/modals/EventModal'
 import { GameOverModal } from './ui/modals/GameOverModal'
 import { InitiativePanel } from './ui/panels/InitiativePanel'
@@ -27,7 +27,7 @@ function App() {
       <main className="flex-1 grid grid-cols-[1fr_420px] min-h-0 overflow-hidden">
         <div className="flex flex-col min-h-0">
           <div className="flex-1 min-h-0">
-            <MapView />
+            <MapViewLeaflet />
           </div>
           <InitiativePanel />
         </div>

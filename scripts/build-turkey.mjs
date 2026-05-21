@@ -202,6 +202,9 @@ const out = {
   regions: [],
 }
 
+// gerçek lat/lon bölge GeoJSON (Leaflet için)
+const geoFeatures = []
+
 for (const [id, r] of Object.entries(REGIONS)) {
   let merged = null
   const used = []
@@ -219,6 +222,7 @@ for (const [id, r] of Object.entries(REGIONS)) {
   const keep = polys.slice(0, 2)
   const d = keep.map((p) => ringToPath(p[0])).join(' ')
   const c = turf.centroid(merged)
+  const [clon, clat] = c.geometry.coordinates
   const [lx, ly] = project(c.geometry.coordinates)
   const labelNudge = { 'tr-cukurova': 12, 'tr-konya': 8, 'tr-van': -18 }
   const finalLabel = [Math.round(lx), Math.round(ly + (labelNudge[id] ?? 0))]
@@ -226,8 +230,15 @@ for (const [id, r] of Object.entries(REGIONS)) {
   out.regions.push({
     id, name: r.name, path: d,
     labelX: finalLabel[0], labelY: finalLabel[1],
+    labelLat: Number(clat.toFixed(4)), labelLon: Number(clon.toFixed(4)),
     population: r.pop, happiness: r.happiness, terrain: r.terrain,
     decorations, description: r.desc,
+  })
+
+  geoFeatures.push({
+    type: 'Feature',
+    properties: { id, name: r.name, terrain: r.terrain },
+    geometry: merged.geometry,
   })
   console.log(`${r.name}: ${used.length} il, path ${d.length} char`)
 }
@@ -236,5 +247,9 @@ fs.writeFileSync(
   'src/data/countries/turkiye.json',
   JSON.stringify(out, null, 2)
 )
+fs.writeFileSync(
+  'src/data/countries/turkiye-regions.json',
+  JSON.stringify({ type: 'FeatureCollection', features: geoFeatures })
+)
 console.log(`\nviewBox: 0 0 ${W} ${H}`)
-console.log('turkiye.json yazıldı.')
+console.log('turkiye.json + turkiye-regions.json (GeoJSON) yazıldı.')

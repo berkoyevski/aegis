@@ -17,6 +17,8 @@ type RawRegion = {
   path?: string
   labelX?: number
   labelY?: number
+  labelLat?: number
+  labelLon?: number
   terrain?: string
   decorations?: { x: number; y: number; kind: string }[]
   population: number | { total: number; happiness: number }
@@ -86,6 +88,8 @@ export function buildInitialState(
       path: shape.path,
       labelX: shape.labelX,
       labelY: shape.labelY,
+      labelLat: raw.labelLat,
+      labelLon: raw.labelLon,
       terrain: raw.terrain,
       decorations: raw.decorations,
       population: {
